@@ -31,12 +31,12 @@ const SearchBar = ({ onSearch }) => {
     const handleInputChange = (e) => {
         const value = e.target.value;
         setSearchValue(value);
-        onSearch(value); // Call the parent onSearch function
+        onSearch(value); 
     };
 
     return (
         <SearchContainer>
-            <SearchButton onClick={handleSearchClick}>🔍</SearchButton>
+            <SearchButton onClick={handleSearchClick}>Entries 🔍</SearchButton>
             {searchVisible && (
                 <SearchInput
                     type="text"

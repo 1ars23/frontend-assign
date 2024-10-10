@@ -1,0 +1,25 @@
+.page-size-container {
+    position: relative;
+    display: inline-block;
+}
+
+.page-size-select {
+    font-weight: bold;
+    border: none;
+    padding: 5px 30px 5px 10px; /* Adjust padding to create space for the arrow */
+    appearance: none; /* Hide the default dropdown arrow */
+    background: transparent; /* Background transparent */
+    cursor: pointer;
+    outline: none; /* Remove outline */
+}
+
+/* Custom down arrow styling */
+.down-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Space from the right */
+    transform: translateY(-50%); /* Center vertically */
+    pointer-events: none; /* Prevent interaction */
+    font-size: 12px; /* Adjust size as needed */
+    color: black; /* Arrow color */
+}

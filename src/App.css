@@ -3,3 +3,8 @@ body {
   background-color: #ebebeb; /* Set the background to grey */
   color: #322625; /* Set the default text color to black */
 }
+
+.underline {
+  text-decoration: underline;
+  text-decoration-color: #fdc936; /* Yellow underline */
+}
