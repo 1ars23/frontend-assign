@@ -7,16 +7,21 @@ import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
 
 const Products = () => {
-    const { setProducts, pageSize, currentPage } = useContext(DataContext);
+    const { setProducts, pageSize, currentPage, products } = useContext(DataContext);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await axios.get(`https://dummyjson.com/products?limit=${pageSize}&skip=${(currentPage - 1) * pageSize}`);
-            setProducts(response.data.products);
+            try {
+                const response = await axios.get(`https://dummyjson.com/products?limit=${pageSize}&skip=${(currentPage - 1) * pageSize}`);
+                console.log(response.data.products);  // Check if data is being fetched
+                setProducts(response.data.products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
         };
     
         fetchProducts();
-    }, [pageSize, currentPage, setProducts]); // Include setProducts here
+    }, [pageSize, currentPage, setProducts]);
     
 
     return (
@@ -24,7 +29,7 @@ const Products = () => {
             <h1>Products</h1>
             <FilterDropdown />
             <SearchBar />
-            <DataTable type="products" />
+            <DataTable type="products" data={products} />
             <Pagination />
         </div>
     );

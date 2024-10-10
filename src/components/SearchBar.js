@@ -1,22 +1,51 @@
-import React, { useContext } from 'react';
-import { DataContext } from '../context/DataContext';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const SearchBar = () => {
-    const { searchTerm, setSearchTerm } = useContext(DataContext);
+const SearchContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
 
-    const handleChange = (e) => {
-        setSearchTerm(e.target.value);
+const SearchInput = styled.input`
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid #c0e3e5;
+    border-radius: 4px;
+`;
+
+const SearchButton = styled.button`
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #322625;
+`;
+
+const SearchBar = ({ onSearch }) => {
+    const [searchVisible, setSearchVisible] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
+    const handleSearchClick = () => {
+        setSearchVisible(!searchVisible);
+    };
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setSearchValue(value);
+        onSearch(value); // Call the parent onSearch function
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleChange}
-                placeholder="Search..."
-            />
-        </div>
+        <SearchContainer>
+            <SearchButton onClick={handleSearchClick}>🔍</SearchButton>
+            {searchVisible && (
+                <SearchInput
+                    type="text"
+                    placeholder="Search..."
+                    value={searchValue}
+                    onChange={handleInputChange}
+                />
+            )}
+        </SearchContainer>
     );
 };
 

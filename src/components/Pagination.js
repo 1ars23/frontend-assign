@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 
 const Pagination = () => {
-    // const { currentPage, setCurrentPage, pageSize, users } = useContext(DataContext);
+    const { users, pageSize, setCurrentPage } = useContext(DataContext);
+
     const totalPages = Math.ceil(users.length / pageSize);
 
     const handlePageChange = (page) => {
@@ -11,11 +12,8 @@ const Pagination = () => {
 
     return (
         <div>
-            {Array.from({ length: totalPages }, (_, index) => (
-                <button key={index} onClick={() => handlePageChange(index + 1)}>
-                    {index + 1}
-                </button>
-            ))}
+            <button onClick={() => handlePageChange(1)}>First Page</button>
+            {/* Render pagination buttons */}
         </div>
     );
 };
