@@ -7,16 +7,18 @@ import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
 
 const Users = () => {
-    const { setUsers, pageSize, currentPage } = useContext(DataContext);
+    const { setUsers, pageSize, currentPage, users } = useContext(DataContext);
 
     useEffect(() => {
         const fetchUsers = async () => {
             const response = await axios.get(`https://dummyjson.com/users?limit=${pageSize}&skip=${(currentPage - 1) * pageSize}`);
+            console.log(response.data.users);  
             setUsers(response.data.users);
         };
     
         fetchUsers();
-    }, [pageSize, currentPage, setUsers]); // Include setUsers here
+    }, [pageSize, currentPage, setUsers]); 
+    
     
 
     return (
@@ -24,7 +26,7 @@ const Users = () => {
             <h1>Users</h1>
             <FilterDropdown />
             <SearchBar />
-            <DataTable type="users" />
+            <DataTable type="users" data={users} />
             <Pagination />
         </div>
     );
